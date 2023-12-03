@@ -16,7 +16,7 @@ data class Coords2D(val x: Int, val y: Int) {
     operator fun div(c: Int) = this / point(c, c)
     fun shittyIntegerNormalize(): Coords2D = Coords2D((x / mag()).roundToInt(), (y / mag()).roundToInt())
     fun mag() = sqrt((x * x + y * y).toDouble())
-    fun manhattenDistance() = x.absoluteValue + y.absoluteValue
+    fun manhattanDistance() = x.absoluteValue + y.absoluteValue
 
 }
 
@@ -36,7 +36,12 @@ fun p(x: Int, y: Int, z: Int, w: Int) = point(x, y, z, w)
 class Array2D<T> (val list: List<List<MutBox<T>>>): Iterable<T> {
 
     fun xSize() = list.size
+
+    fun rows() = xSize()
+
     fun ySize() = list[0].size
+
+    fun cols() = ySize()
 
     operator fun get(coords: Coords2D): T = getMutBox(coords).get()
     fun getMutBox(coords: Coords2D): MutBox<T> = list[coords.x][coords.y]
